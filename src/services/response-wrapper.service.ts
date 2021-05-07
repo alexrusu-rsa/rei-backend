@@ -2,9 +2,7 @@ import { IWrappedResponse } from '../models/wrapped-response.model';
 
 export class ResponseWrapperService {
 	wrapOk(payload: any): IWrappedResponse {
-		return {
-			data: payload,
-		};
+		return payload;
 	}
 
 	wrapException(error: any): IWrappedResponse {
