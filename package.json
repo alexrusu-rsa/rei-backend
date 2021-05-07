@@ -7,7 +7,8 @@
 		"build-ts": "tsc",
 		"build": "rimraf ./dist && tsc",
 		"prod": "set NODE_ENV=production && npm run build-ts && node dist/index.js",
-		"start": "tslint --project ./tsconfig.json && nodemon"
+		"start": "node .dist/index.js",
+		"dev": "tslint --project tsconfig.json && nodemon"
 	},
 	"author": "Rusu Alex-George - RSA SOFT SRL",
 	"dependencies": {
