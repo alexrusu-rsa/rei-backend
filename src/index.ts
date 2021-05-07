@@ -3,15 +3,10 @@ import * as Router from 'koa-router';
 
 import * as logger from 'koa-logger';
 import * as json from 'koa-json';
+import { walletRouter } from './dependecies';
 
 const app = new Koa();
-const router = new Router();
-
-router.get('/', async (ctx, next) => {
-	ctx.body = { msg: 'Hello world!' };
-
-	await next();
-});
+const router = new Router().use(walletRouter.getRouter().routes());
 
 app.use(json());
 app.use(logger());
