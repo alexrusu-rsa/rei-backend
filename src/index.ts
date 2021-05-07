@@ -18,7 +18,7 @@ app.use(logger());
 
 app.use(router.routes()).use(router.allowedMethods());
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
 	// tslint:disable-next-line:no-console
 	console.log('Koa started');
 });
