@@ -18,6 +18,47 @@ export class WalletRouter {
 			}
 		});
 
+		router.post('/', async (ctx: Context) => {
+			try {
+				const walletResponse: Wallet = walletService.saveWallet(
+					ctx.request.body.name
+				);
+				if (walletResponse) {
+					ctx.status = 200;
+					ctx.body = responseWrapperService.wrapOk(walletResponse);
+				} else {
+					ctx.status = 500;
+					ctx.body = responseWrapperService.wrapException({
+						message: `The walletName: ${ctx.request.body.name} property does not respect the format`,
+					});
+				}
+			} catch (e) {
+				ctx.status = 422;
+				ctx.body = responseWrapperService.wrapException(e);
+			}
+		});
+
+		router.put('/', async (ctx: Context) => {
+			try {
+				const walletResponse: Wallet = walletService.addTransaction(
+					ctx.request.body.name,
+					ctx.request.body.transaction
+				);
+				if (walletResponse) {
+					ctx.status = 200;
+					ctx.body = responseWrapperService.wrapOk(walletResponse);
+				} else {
+					ctx.status = 422;
+					ctx.body = responseWrapperService.wrapException({
+						message: `The walletName: ${ctx.request.body.name} property does not respect the format`,
+					});
+				}
+			} catch (e) {
+				ctx.status = 500;
+				ctx.body = responseWrapperService.wrapException(e);
+			}
+		});
+
 		return router;
 	}
 }

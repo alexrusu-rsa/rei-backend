@@ -1,12 +1,12 @@
 export interface Transaction {
-	sum?: number;
+	amount?: number;
 	reference?: string;
 }
 
 export interface Wallet {
-	id: number;
+	id?: number;
 	name: string;
-	balance: number;
-	transactions: Transaction[];
-	transactionsTotal: number;
+	balance?: number;
+	transactions?: Transaction[];
+	transactionsTotal?: number;
 }
