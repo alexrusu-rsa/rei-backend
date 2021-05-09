@@ -44,6 +44,7 @@ export class WalletService {
 		if (walletExistsIndex !== -1) {
 			this.wallets[walletExistsIndex].transactions.push(transaction);
 			this.wallets[walletExistsIndex].transactionsTotal++;
+			this.wallets[walletExistsIndex].balance += transaction.amount;
 		} else throw new Error(`Wallet ${walletName} does not exist!`);
 
 		fs.writeFileSync('src/mock/wallets.json', JSON.stringify(this.wallets));
